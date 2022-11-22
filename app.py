@@ -13,7 +13,7 @@ dogs = [
 
 @app.route("/")
 def hello_world():
-    return f"Hello, World!"
+    return jsonify({'message': 'Hello from Flask!'}), 200
 
 @app.route("/dogs", methods=["GET", "POST"])
 def index():
