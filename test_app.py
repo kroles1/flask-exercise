@@ -34,3 +34,10 @@ def test_post_dogs(api):
 def test_get_cats_error(api):
         res = api.get('/dogs/4')
         assert res.status == '400 BAD REQUEST'
+
+def test_patch_dog(api):
+        mock_data = json.dumps({'name': 'Molly'})
+        mock_headers = {'Content-Type': 'application/json'}
+        res = api.patch('/dogs/2', data=mock_data, headers=mock_headers)
+        assert res.json['id'] == 2
+        assert res.json['name'] == 'Molly'
