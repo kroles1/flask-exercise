@@ -1,5 +1,5 @@
 import pytest
-import app
+from dogs import app
 
 @pytest.fixture
 def api(monkeypatch):

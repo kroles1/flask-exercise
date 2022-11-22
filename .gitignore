@@ -1,5 +1,7 @@
 .pytest_cache
 .coverage
-.Pipfile.lock
+Pipfile.lock
 __pychache__
 coverage
+.env
+instance
