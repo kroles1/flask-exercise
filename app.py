@@ -27,7 +27,7 @@ def index():
         print(data)
         return f"{data['name']} was added to dogs", 201
 
-@app.route('/dogs/<int:dog_id>', methods=["GET", "DELETE"])
+@app.route('/dogs/<int:dog_id>', methods=["GET", "DELETE", "PATCH"])
 def show(dog_id):
     try:
         if request.method == "GET":
@@ -36,6 +36,13 @@ def show(dog_id):
             dog = next(dog for dog in dogs if dog['id'] == dog_id)
             dogs.remove(dog)
             return dogs, 204
+        elif request.method == "PATCH":
+            dog = next(dog for dog in dogs if dog['id'] == dog_id)
+            data = request.json
+            print(data)
+            for key, val in data.items():
+                dog[key] = val
+            return dog, 200
     except:
         raise BadRequest(f"We don't have that dog in dogs")
 
